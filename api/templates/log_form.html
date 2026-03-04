@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Snow &amp; Ice Activity Log</title>
+<style>
+  @page {
+    size: letter portrait;
+    margin: 0.4in 0.45in 0.4in 0.45in;
+  }
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 8.5pt;
+    color: #1a1a1a;
+    line-height: 1.25;
+  }
+
+  /* ── HEADER ── */
+  .header {
+    text-align: center;
+    border-bottom: 2.5px solid #1e3a5f;
+    padding-bottom: 6px;
+    margin-bottom: 8px;
+  }
+
+  .header h1 {
+    font-size: 17pt;
+    font-weight: 900;
+    color: #1e3a5f;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-bottom: 1px;
+  }
+
+  .header .business-name {
+    font-size: 11pt;
+    font-weight: 600;
+    color: #374151;
+  }
+
+  /* ── DATE RANGE ROW ── */
+  .date-range {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+    font-size: 9pt;
+    font-weight: 600;
+    color: #1e3a5f;
+  }
+
+  .date-range .field {
+    display: flex;
+    align-items: baseline;
+    gap: 4px;
+  }
+
+  .date-range .line {
+    display: inline-block;
+    border-bottom: 1px solid #333;
+    width: 140px;
+    height: 1em;
+  }
+
+  /* ── MAIN TABLE ── */
+  table.log-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 10px;
+  }
+
+  table.log-table th {
+    background: #1e3a5f;
+    color: #ffffff;
+    font-size: 7.5pt;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    padding: 4px 3px;
+    text-align: center;
+    border: 1px solid #1e3a5f;
+    vertical-align: bottom;
+  }
+
+  table.log-table td {
+    border: 1px solid #9ca3af;
+    padding: 3px 3px;
+    vertical-align: top;
+    height: 52px;
+    font-size: 7pt;
+  }
+
+  table.log-table tr:nth-child(even) td {
+    background: #f9fafb;
+  }
+
+  /* Column widths */
+  col.col-date       { width: 8%; }
+  col.col-time       { width: 7%; }
+  col.col-weather    { width: 16%; }
+  col.col-actions    { width: 18%; }
+  col.col-areas      { width: 18%; }
+  col.col-materials  { width: 18%; }
+  col.col-employee   { width: 15%; }
+
+  /* ── CHECKBOX STYLING ── */
+  .cb-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1px 0;
+  }
+
+  .cb-item {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    width: 100%;
+    line-height: 1.4;
+  }
+
+  .cb {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border: 1px solid #374151;
+    flex-shrink: 0;
+    margin-right: 1px;
+  }
+
+  .cb-label {
+    font-size: 6.5pt;
+    color: #374151;
+  }
+
+  /* ── EMPLOYEE SIGNATURE AREA ── */
+  .sig-line {
+    border-bottom: 1px solid #9ca3af;
+    width: 90%;
+    margin-top: 28px;
+  }
+
+  .sig-label {
+    font-size: 6pt;
+    color: #6b7280;
+    margin-top: 1px;
+  }
+
+  /* ── NOTES SECTION ── */
+  .notes {
+    margin-bottom: 8px;
+  }
+
+  .notes-header {
+    font-size: 9pt;
+    font-weight: 800;
+    color: #1e3a5f;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+
+  .notes-line {
+    border-bottom: 1px solid #9ca3af;
+    height: 18px;
+    width: 100%;
+  }
+
+  /* ── BOTTOM NOTICES ── */
+  .bottom-notices {
+    margin-top: 6px;
+    font-size: 7.5pt;
+  }
+
+  .retention {
+    font-weight: 700;
+    color: #1e3a5f;
+    margin-bottom: 2px;
+  }
+
+  .program-note {
+    color: #374151;
+    font-style: italic;
+  }
+
+  /* ── FOOTER ── */
+  .footer {
+    text-align: center;
+    font-size: 7.5pt;
+    color: #6b7280;
+    margin-top: 8px;
+    border-top: 1px solid #d1d5db;
+    padding-top: 4px;
+  }
+
+  .footer strong {
+    color: #1e3a5f;
+  }
+</style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <div class="header">
+    <h1>&#10052; Snow &amp; Ice Activity Log</h1>
+    <div class="business-name">{{ business_name }}</div>
+  </div>
+
+  <!-- DATE RANGE -->
+  <div class="date-range">
+    <div class="field">Week / Date Range: <span class="line"></span></div>
+    <div class="field">Location: <span class="line"></span></div>
+  </div>
+
+  <!-- LOG TABLE -->
+  <table class="log-table">
+    <colgroup>
+      <col class="col-date">
+      <col class="col-time">
+      <col class="col-weather">
+      <col class="col-actions">
+      <col class="col-areas">
+      <col class="col-materials">
+      <col class="col-employee">
+    </colgroup>
+    <thead>
+      <tr>
+        <th>Date</th>
+        <th>Time</th>
+        <th>Weather Conditions</th>
+        <th>Actions Taken</th>
+        <th>Areas Addressed</th>
+        <th>Materials Used</th>
+        <th>Employee</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for row in range(10) %}
+      <tr>
+        <!-- Date -->
+        <td></td>
+        <!-- Time -->
+        <td></td>
+        <!-- Weather Conditions -->
+        <td>
+          <div class="cb-group">
+            <span class="cb-item"><span class="cb"></span><span class="cb-label">Snowing</span></span>
+            <span class="cb-item"><span class="cb"></span><span class="cb-label">Icy</span></span>
+            <span class="cb-item"><span class="cb"></span><span class="cb-label">Rain/Sleet</span></span>
+            <span class="cb-item"><span class="cb"></span><span class="cb-label">Clear</span></span>
+            <span class="cb-item"><span class="cb"></span><span class="cb-label">Other: ______</span></span>
+          </div>
+        </td>
+        <!-- Actions Taken -->
+        <td>
+          <div class="cb-group">
+            <span class="cb-item"><span class="cb"></span><span class="cb-label">Shoveled</span></span>
+            <span class="cb-item"><span class="cb"></span><span class="cb-label">Salted/De-iced</span></span>
+            <span class="cb-item"><span class="cb"></span><span class="cb-label">Plowed</span></span>
+            <span class="cb-item"><span class="cb"></span><span class="cb-label">Sanded</span></span>
+            <span class="cb-item"><span class="cb"></span><span class="cb-label">Inspected</span></span>
+          </div>
+        </td>
+        <!-- Areas Addressed -->
+        <td>
+          <div class="cb-group">
+            <span class="cb-item"><span class="cb"></span><span class="cb-label">Main Entrance</span></span>
+            <span class="cb-item"><span class="cb"></span><span class="cb-label">Walkways</span></span>
+            <span class="cb-item"><span class="cb"></span><span class="cb-label">Parking Lot</span></span>
+            <span class="cb-item"><span class="cb"></span><span class="cb-label">Loading Area</span></span>
+            <span class="cb-item"><span class="cb"></span><span class="cb-label">Other: ______</span></span>
+          </div>
+        </td>
+        <!-- Materials Used -->
+        <td>
+          <div class="cb-group">
+            <span class="cb-item"><span class="cb"></span><span class="cb-label">Rock Salt</span></span>
+            <span class="cb-item"><span class="cb"></span><span class="cb-label">Calcium Chloride</span></span>
+            <span class="cb-item"><span class="cb"></span><span class="cb-label">Sand/Grit</span></span>
+            <span class="cb-item"><span class="cb"></span><span class="cb-label">Other: ______</span></span>
+          </div>
+        </td>
+        <!-- Employee -->
+        <td>
+          <div class="sig-line"></div>
+          <div class="sig-label">Initials / Signature</div>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+  <!-- NOTES -->
+  <div class="notes">
+    <div class="notes-header">Notes</div>
+    <div class="notes-line"></div>
+    <div class="notes-line"></div>
+    <div class="notes-line"></div>
+  </div>
+
+  <!-- BOTTOM NOTICES -->
+  <div class="bottom-notices">
+    <div class="retention">Retain this log for a minimum of 3 years.</div>
+    <div class="program-note">This log is part of the {{ business_name }} Snow and Ice Management Program.</div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <strong>SafeWalk</strong> &mdash; safewalkpolicy.com
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Snow and Ice Removal Services Agreement</title>
+<style>
+  @page {
+    size: letter;
+    margin: 1in;
+    @bottom-center {
+      content: "SafeWalk — safewalkpolicy.com | Page " counter(page);
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 9pt;
+      color: #666;
+    }
+  }
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 11pt;
+    line-height: 1.5;
+    color: #1a1a1a;
+  }
+
+  .contract-title {
+    text-align: center;
+    font-size: 16pt;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1pt;
+    margin-bottom: 28pt;
+    padding-bottom: 12pt;
+    border-bottom: 2px solid #1a1a1a;
+  }
+
+  .parties {
+    margin-bottom: 24pt;
+    line-height: 1.7;
+  }
+
+  .parties p {
+    margin-bottom: 6pt;
+  }
+
+  .party-label {
+    font-weight: bold;
+  }
+
+  .blank {
+    display: inline-block;
+    min-width: 200px;
+    border-bottom: 1px solid #1a1a1a;
+    padding: 0 4pt;
+    color: #555;
+    font-size: 10pt;
+  }
+
+  .blank-short {
+    display: inline-block;
+    min-width: 100px;
+    border-bottom: 1px solid #1a1a1a;
+    padding: 0 4pt;
+    color: #555;
+    font-size: 10pt;
+  }
+
+  .blank-medium {
+    display: inline-block;
+    min-width: 150px;
+    border-bottom: 1px solid #1a1a1a;
+    padding: 0 4pt;
+    color: #555;
+    font-size: 10pt;
+  }
+
+  .section {
+    margin-bottom: 18pt;
+  }
+
+  .section-heading {
+    font-size: 11pt;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-bottom: 8pt;
+  }
+
+  .section-number {
+    font-weight: bold;
+  }
+
+  .section-body {
+    margin-left: 24pt;
+  }
+
+  .section-body p {
+    margin-bottom: 6pt;
+  }
+
+  .service-list {
+    list-style: none;
+    margin: 8pt 0 8pt 16pt;
+    padding: 0;
+  }
+
+  .service-list li {
+    margin-bottom: 4pt;
+    padding-left: 16pt;
+    position: relative;
+  }
+
+  .service-list li::before {
+    content: "\2022";
+    position: absolute;
+    left: 0;
+    color: #1a1a1a;
+  }
+
+  .checkbox-option {
+    display: block;
+    margin-bottom: 6pt;
+    padding-left: 4pt;
+  }
+
+  .checkbox {
+    display: inline-block;
+    width: 12pt;
+    height: 12pt;
+    border: 1.5px solid #1a1a1a;
+    vertical-align: middle;
+    margin-right: 6pt;
+    position: relative;
+    top: -1pt;
+  }
+
+  .insurance-list {
+    list-style: none;
+    margin: 8pt 0 8pt 16pt;
+    padding: 0;
+  }
+
+  .insurance-list li {
+    margin-bottom: 4pt;
+    padding-left: 16pt;
+    position: relative;
+  }
+
+  .insurance-list li::before {
+    content: "\2022";
+    position: absolute;
+    left: 0;
+    color: #1a1a1a;
+  }
+
+  .doc-list {
+    list-style: none;
+    margin: 8pt 0 8pt 16pt;
+    padding: 0;
+  }
+
+  .doc-list li {
+    margin-bottom: 4pt;
+    padding-left: 16pt;
+    position: relative;
+  }
+
+  .doc-list li::before {
+    content: "\2022";
+    position: absolute;
+    left: 0;
+    color: #1a1a1a;
+  }
+
+  .signatures-section {
+    page-break-before: auto;
+    margin-top: 36pt;
+    page-break-inside: avoid;
+  }
+
+  .signatures-title {
+    font-size: 12pt;
+    font-weight: bold;
+    text-transform: uppercase;
+    text-align: center;
+    margin-bottom: 30pt;
+    padding-top: 12pt;
+    border-top: 1px solid #ccc;
+  }
+
+  .signature-block {
+    margin-bottom: 36pt;
+  }
+
+  .signature-block-label {
+    font-weight: bold;
+    font-size: 11pt;
+    margin-bottom: 18pt;
+  }
+
+  .signature-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 14pt;
+  }
+
+  .signature-field {
+    flex: 1;
+  }
+
+  .signature-field.date-field {
+    flex: 0 0 200pt;
+    margin-left: 40pt;
+  }
+
+  .signature-line {
+    border-bottom: 1px solid #1a1a1a;
+    min-height: 24pt;
+    margin-bottom: 2pt;
+  }
+
+  .signature-label {
+    font-size: 9pt;
+    color: #555;
+  }
+
+  .name-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 14pt;
+  }
+
+  .name-field {
+    flex: 1;
+  }
+
+  .title-field {
+    flex: 0 0 200pt;
+    margin-left: 40pt;
+  }
+
+  .trigger-list {
+    list-style: none;
+    margin: 8pt 0 8pt 16pt;
+    padding: 0;
+  }
+
+  .trigger-list li {
+    margin-bottom: 4pt;
+    padding-left: 16pt;
+    position: relative;
+  }
+
+  .trigger-list li::before {
+    content: "\2022";
+    position: absolute;
+    left: 0;
+    color: #1a1a1a;
+  }
+
+  .term-list {
+    list-style: none;
+    margin: 8pt 0 8pt 16pt;
+    padding: 0;
+  }
+
+  .term-list li {
+    margin-bottom: 4pt;
+    padding-left: 16pt;
+    position: relative;
+  }
+
+  .term-list li::before {
+    content: "\2022";
+    position: absolute;
+    left: 0;
+    color: #1a1a1a;
+  }
+</style>
+</head>
+<body>
+
+  <div class="contract-title">Snow and Ice Removal Services Agreement</div>
+
+  <div class="parties">
+    <p><span class="party-label">Between:</span> {{ business_name }} ("<strong>Client</strong>"), located at {{ full_address }}</p>
+    <p><span class="party-label">And:</span> <span class="blank">&nbsp;</span> ("<strong>Contractor</strong>")</p>
+    <p><span class="party-label">Effective Date:</span> <span class="blank-medium">&nbsp;</span></p>
+  </div>
+
+  <!-- Section 1 -->
+  <div class="section">
+    <div class="section-heading"><span class="section-number">1.</span> Scope of Services</div>
+    <div class="section-body">
+      <p>Contractor shall provide snow and ice removal services at the Client's premises including:</p>
+      <ul class="service-list">
+        <li>Snow plowing of parking areas and driveways</li>
+        <li>Snow removal from walkways and sidewalks (if applicable)</li>
+        <li>Application of de-icing materials to parking areas, walkways, and entrances</li>
+        <li>Emergency response for ice storms or hazardous conditions</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Section 2 -->
+  <div class="section">
+    <div class="section-heading"><span class="section-number">2.</span> Service Area</div>
+    <div class="section-body">
+      <p>Services shall be performed at: {{ full_address }}</p>
+      <p>Specific areas include: <span class="blank" style="min-width: 340pt;">&nbsp;</span></p>
+      <p style="font-size: 9pt; color: #555; margin-top: 2pt; font-style: italic;">(e.g., "front parking lot (approximately ___ sq ft), rear loading area, and connecting walkways")</p>
+    </div>
+  </div>
+
+  <!-- Section 3 -->
+  <div class="section">
+    <div class="section-heading"><span class="section-number">3.</span> Trigger Conditions and Response Time</div>
+    <div class="section-body">
+      <ul class="trigger-list">
+        <li>Contractor shall begin services when snow accumulation reaches <span class="blank-short">2 inches</span> on any service area</li>
+        <li>De-icing services shall be provided when ice formation is detected or forecast</li>
+        <li>Contractor shall respond within <span class="blank-short">&nbsp;</span> hours of trigger conditions being met</li>
+        <li>For overnight events, areas shall be cleared before <span class="blank-short">6:00 AM</span> on the following business day</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Section 4 -->
+  <div class="section">
+    <div class="section-heading"><span class="section-number">4.</span> Season and Term</div>
+    <div class="section-body">
+      <ul class="term-list">
+        <li>Services shall be provided during the winter season from <span class="blank-short">November 1</span> to <span class="blank-short">April 1</span> of each year</li>
+        <li>This Agreement shall be effective for the {{ year }}&ndash;{{ year|int + 1 }} winter season</li>
+        <li>Agreement shall automatically renew for successive one-year terms unless terminated with 30 days written notice</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Section 5 -->
+  <div class="section">
+    <div class="section-heading"><span class="section-number">5.</span> Compensation</div>
+    <div class="section-body">
+      <p style="margin-bottom: 10pt;">Choose one:</p>
+      <span class="checkbox-option"><span class="checkbox"></span> <strong>Per Event:</strong> $<span class="blank-short">&nbsp;</span> per snow event; $<span class="blank-short">&nbsp;</span> per de-icing application</span>
+      <span class="checkbox-option"><span class="checkbox"></span> <strong>Monthly Retainer:</strong> $<span class="blank-short">&nbsp;</span> per month during the service season</span>
+      <span class="checkbox-option"><span class="checkbox"></span> <strong>Seasonal Flat Rate:</strong> $<span class="blank-short">&nbsp;</span> for the entire season</span>
+      <p style="margin-top: 10pt;">Payment terms: Net <span class="blank-short">30</span> days from date of invoice.</p>
+    </div>
+  </div>
+
+  <!-- Section 6 -->
+  <div class="section">
+    <div class="section-heading"><span class="section-number">6.</span> Insurance Requirements</div>
+    <div class="section-body">
+      <p>Contractor shall maintain throughout the term:</p>
+      <ul class="insurance-list">
+        <li>Commercial General Liability: minimum $<span class="blank-short">1,000,000</span> per occurrence</li>
+        <li>Automobile Liability: minimum $<span class="blank-short">1,000,000</span> combined single limit</li>
+        <li>Workers' Compensation: as required by the State of {{ business_state }}</li>
+      </ul>
+      <p>Contractor shall provide certificates of insurance to Client prior to commencement of services and upon each renewal.</p>
+    </div>
+  </div>
+
+  <!-- Section 7 -->
+  <div class="section">
+    <div class="section-heading"><span class="section-number">7.</span> Indemnification</div>
+    <div class="section-body">
+      <p>Contractor shall indemnify and hold harmless Client from any claims, damages, or liabilities arising from Contractor's negligence in performing services under this Agreement. Client shall indemnify and hold harmless Contractor from any claims arising from Client's negligence or failure to notify Contractor of hazardous conditions.</p>
+    </div>
+  </div>
+
+  <!-- Section 8 -->
+  <div class="section">
+    <div class="section-heading"><span class="section-number">8.</span> Documentation</div>
+    <div class="section-body">
+      <p>Contractor shall maintain a log of all services performed including:</p>
+      <ul class="doc-list">
+        <li>Date and time of service</li>
+        <li>Weather conditions at time of service</li>
+        <li>Services performed and areas addressed</li>
+        <li>Materials applied (type and quantity)</li>
+        <li>Photographs of completed work (when practical)</li>
+      </ul>
+      <p>Contractor shall provide copies of service logs to Client within <span class="blank-short">48</span> hours of each service event.</p>
+    </div>
+  </div>
+
+  <!-- Section 9 -->
+  <div class="section">
+    <div class="section-heading"><span class="section-number">9.</span> Termination</div>
+    <div class="section-body">
+      <p>Either party may terminate this Agreement with 30 days written notice. In the event of termination, Contractor shall be compensated for services rendered through the termination date.</p>
+    </div>
+  </div>
+
+  <!-- Section 10 -->
+  <div class="section">
+    <div class="section-heading"><span class="section-number">10.</span> Governing Law</div>
+    <div class="section-body">
+      <p>This Agreement shall be governed by the laws of the State of {{ business_state }}.</p>
+    </div>
+  </div>
+
+  <!-- Section 11 -->
+  <div class="section">
+    <div class="section-heading"><span class="section-number">11.</span> Entire Agreement</div>
+    <div class="section-body">
+      <p>This Agreement constitutes the entire agreement between the parties. Any amendments must be in writing and signed by both parties.</p>
+    </div>
+  </div>
+
+  <!-- Signatures -->
+  <div class="signatures-section">
+    <div class="signatures-title">Signatures</div>
+
+    <div class="signature-block">
+      <div class="signature-block-label">Client: {{ business_name }}</div>
+      <div class="signature-row">
+        <div class="signature-field">
+          <div class="signature-line"></div>
+          <div class="signature-label">Signature</div>
+        </div>
+        <div class="signature-field date-field">
+          <div class="signature-line"></div>
+          <div class="signature-label">Date</div>
+        </div>
+      </div>
+      <div class="name-row">
+        <div class="name-field">
+          <div class="signature-line">{{ contact_name }}</div>
+          <div class="signature-label">Printed Name</div>
+        </div>
+        <div class="title-field">
+          <div class="signature-line"></div>
+          <div class="signature-label">Title</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="signature-block">
+      <div class="signature-block-label">Contractor: <span class="blank">&nbsp;</span></div>
+      <div class="signature-row">
+        <div class="signature-field">
+          <div class="signature-line"></div>
+          <div class="signature-label">Signature</div>
+        </div>
+        <div class="signature-field date-field">
+          <div class="signature-line"></div>
+          <div class="signature-label">Date</div>
+        </div>
+      </div>
+      <div class="name-row">
+        <div class="name-field">
+          <div class="signature-line"></div>
+          <div class="signature-label">Printed Name</div>
+        </div>
+        <div class="title-field">
+          <div class="signature-line"></div>
+          <div class="signature-label">Title</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>

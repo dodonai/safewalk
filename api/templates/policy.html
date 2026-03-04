@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Snow and Ice Management Policy — {{ business_name }}</title>
+<style>
+  /* ── Page Setup ── */
+  @page {
+    size: letter;
+    margin: 1in;
+    @bottom-center {
+      content: "Prepared by SafeWalk  |  Page " counter(page) " of " counter(pages);
+      font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+      font-size: 8pt;
+      color: #888;
+    }
+  }
+
+  /* ── Base Typography ── */
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: "Georgia", "Times New Roman", Times, serif;
+    font-size: 11pt;
+    line-height: 1.55;
+    color: #1a1a1a;
+  }
+
+  /* ── Cover / Header Block ── */
+  .cover {
+    text-align: center;
+    padding: 60pt 0 36pt 0;
+    border-bottom: 3pt solid #1a3c5e;
+    margin-bottom: 28pt;
+  }
+
+  .cover h1 {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 20pt;
+    font-weight: 700;
+    letter-spacing: 0.5pt;
+    color: #1a3c5e;
+    text-transform: uppercase;
+    margin-bottom: 24pt;
+    line-height: 1.3;
+  }
+
+  .cover .business-name {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 15pt;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 6pt;
+  }
+
+  .cover .address {
+    font-size: 11pt;
+    color: #555;
+    margin-bottom: 20pt;
+  }
+
+  .cover .meta-line {
+    font-size: 10pt;
+    color: #666;
+    margin-bottom: 3pt;
+  }
+
+  /* ── Section Headings ── */
+  h2 {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 13pt;
+    font-weight: 700;
+    color: #1a3c5e;
+    margin-top: 22pt;
+    margin-bottom: 8pt;
+    padding-bottom: 4pt;
+    border-bottom: 1px solid #ccc;
+    page-break-after: avoid;
+  }
+
+  h3 {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 11pt;
+    font-weight: 700;
+    color: #333;
+    margin-top: 14pt;
+    margin-bottom: 4pt;
+    page-break-after: avoid;
+  }
+
+  /* ── Body Content ── */
+  p {
+    margin-bottom: 8pt;
+    text-align: justify;
+  }
+
+  ul, ol {
+    margin-left: 20pt;
+    margin-bottom: 8pt;
+  }
+
+  li {
+    margin-bottom: 4pt;
+  }
+
+  /* ── Tables ── */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 8pt;
+    margin-bottom: 12pt;
+    font-size: 10.5pt;
+  }
+
+  table th {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 10pt;
+    font-weight: 700;
+    text-align: left;
+    background-color: #e8edf2;
+    color: #1a3c5e;
+    padding: 6pt 8pt;
+    border: 1px solid #bbb;
+  }
+
+  table td {
+    padding: 5pt 8pt;
+    border: 1px solid #bbb;
+    vertical-align: top;
+  }
+
+  table tr:nth-child(even) td {
+    background-color: #f7f8fa;
+  }
+
+  /* ── Callout / Note Box ── */
+  .note {
+    background-color: #f0f4f8;
+    border-left: 3pt solid #1a3c5e;
+    padding: 8pt 12pt;
+    margin: 10pt 0;
+    font-size: 10.5pt;
+  }
+
+  /* ── Acknowledgment Section ── */
+  .acknowledgment {
+    page-break-before: auto;
+    margin-top: 40pt;
+    border-top: 2pt solid #1a3c5e;
+    padding-top: 20pt;
+  }
+
+  .acknowledgment p {
+    text-align: left;
+    margin-bottom: 10pt;
+  }
+
+  .sig-block {
+    margin-top: 30pt;
+  }
+
+  .sig-line {
+    display: flex;
+    margin-bottom: 24pt;
+  }
+
+  .sig-field {
+    border-bottom: 1px solid #333;
+    width: 65%;
+    min-height: 14pt;
+    margin-right: 10pt;
+  }
+
+  .sig-field-short {
+    border-bottom: 1px solid #333;
+    width: 30%;
+    min-height: 14pt;
+  }
+
+  .sig-label {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 9pt;
+    color: #666;
+    margin-top: 3pt;
+  }
+
+  /* ── Utility ── */
+  .section-number {
+    font-weight: 700;
+  }
+
+  .priority-label {
+    font-weight: 700;
+    color: #1a3c5e;
+  }
+
+  .page-break {
+    page-break-before: always;
+  }
+</style>
+</head>
+<body>
+
+<!-- ============================================================
+     COVER / HEADER
+     ============================================================ -->
+<div class="cover">
+  <h1>Snow and Ice Management<br>Policy and Procedures</h1>
+  <div class="business-name">{{ business_name }}</div>
+  <div class="address">{{ full_address }}</div>
+  <div class="meta-line"><strong>Effective Date:</strong> {{ generated_date }}</div>
+  <div class="meta-line"><strong>Policy Year:</strong> {{ year }}&ndash;{{ year|int + 1 }} Winter Season</div>
+  <div class="meta-line" style="margin-top: 12pt;"><strong>Prepared by</strong> SafeWalk</div>
+</div>
+
+<!-- ============================================================
+     SECTION 1 — PURPOSE AND SCOPE
+     ============================================================ -->
+<h2><span class="section-number">Section 1</span> &mdash; Purpose and Scope</h2>
+
+<p>
+  The purpose of this Snow and Ice Management Policy is to establish clear procedures and
+  responsibilities for maintaining safe conditions on the premises of <strong>{{ business_name }}</strong>
+  during winter weather events. Accumulation of snow and ice on walkways, parking areas, and
+  building entrances poses a significant risk of slip-and-fall injuries to employees, customers,
+  vendors, and visitors.
+</p>
+
+<p>
+  This policy is designed to minimize that risk through proactive monitoring, timely removal of
+  snow and ice, proper documentation of all actions taken, and clear assignment of duties. Compliance
+  with this policy demonstrates a commitment to safety and may serve as evidence of reasonable care
+  in the event of a liability claim.
+</p>
+
+<p><strong>Scope.</strong> This policy applies to all exterior areas of the business premises, including but not limited to:</p>
+<ul>
+  <li>Primary and secondary entrances and exits</li>
+  <li>All exterior walkways and sidewalks</li>
+  <li>ADA-accessible routes and ramps</li>
+  <li>Customer and employee parking areas</li>
+  <li>Loading docks and delivery areas</li>
+  <li>Stairways, handrails, and elevated walkways</li>
+</ul>
+
+<!-- ============================================================
+     SECTION 2 — RESPONSIBILITIES
+     ============================================================ -->
+<h2><span class="section-number">Section 2</span> &mdash; Responsibilities</h2>
+
+<h3>2.1 &nbsp; Management</h3>
+<ul>
+  <li>Ensure this policy is distributed to all employees and that each employee signs the acknowledgment page.</li>
+  <li>Maintain an adequate inventory of snow and ice removal supplies before and throughout the winter season.</li>
+  <li>Designate specific employees responsible for monitoring weather conditions and performing removal duties.</li>
+  <li>Arrange and oversee any third-party snow removal contracts, ensuring contractors carry adequate insurance.</li>
+  <li>Review incident reports promptly and take corrective action as warranted.</li>
+</ul>
+
+<h3>2.2 &nbsp; Designated Employees</h3>
+<ul>
+  <li>Monitor local weather forecasts before and during business hours.</li>
+  <li>Perform snow and ice removal in accordance with the procedures outlined in Section&nbsp;4.</li>
+  <li>Complete a Snow and Ice Activity Log entry for every action taken (see Section&nbsp;7).</li>
+  <li>Inspect priority areas at least every two hours during active precipitation events.</li>
+  <li>Report any equipment shortages or maintenance needs to management immediately.</li>
+</ul>
+
+<h3>2.3 &nbsp; All Staff</h3>
+<ul>
+  <li>Report hazardous conditions (ice, snow accumulation, wet floors near entrances) to a designated employee or manager as soon as observed.</li>
+  <li>Exercise caution when walking on exterior surfaces during winter weather.</li>
+  <li>Use designated entrances that have been cleared and treated whenever possible.</li>
+  <li>Do not attempt snow or ice removal unless trained and assigned to do so.</li>
+</ul>
+
+<!-- ============================================================
+     SECTION 3 — WEATHER MONITORING
+     ============================================================ -->
+<h2><span class="section-number">Section 3</span> &mdash; Weather Monitoring</h2>
+
+<p>Proactive weather monitoring is the first line of defense against snow and ice hazards. The designated employee(s) shall:</p>
+
+<ol>
+  <li><strong>Pre-shift check.</strong> Review the local forecast at least 30 minutes before the start of business hours each day from November through March (or as conditions warrant).</li>
+  <li><strong>Ongoing monitoring.</strong> Check conditions at a minimum of every two hours during business hours when temperatures are at or below 35&deg;F (2&deg;C), or when precipitation is occurring or forecast.</li>
+  <li><strong>Refreezing awareness.</strong> Be alert to temperature drops in the late afternoon and evening that may cause melted snow or standing water to refreeze, particularly on shaded surfaces and metal grates.</li>
+  <li><strong>Storm preparation.</strong> When significant winter weather is forecast (3+ inches of snow, ice storms, or freezing rain), ensure all equipment and supplies are staged and accessible before the event begins.</li>
+</ol>
+
+<p><strong>Recommended sources:</strong></p>
+<ul>
+  <li>National Weather Service &mdash; <em>weather.gov</em></li>
+  <li>Local television and radio weather reports</li>
+  <li>Commercial weather applications (e.g., Weather Channel, AccuWeather, Dark Sky)</li>
+  <li>State Department of Transportation winter weather advisories</li>
+</ul>
+
+<!-- ============================================================
+     SECTION 4 — SNOW AND ICE REMOVAL PROCEDURES
+     ============================================================ -->
+<div class="page-break"></div>
+<h2><span class="section-number">Section 4</span> &mdash; Snow and Ice Removal Procedures</h2>
+
+<h3>4.1 &nbsp; Trigger Conditions</h3>
+<p>Removal operations shall begin when <strong>any</strong> of the following conditions are observed:</p>
+<ul>
+  <li>Snow accumulation reaches <strong>1 inch</strong> or more on any walkway, entrance, or pedestrian surface.</li>
+  <li>Any ice formation is present on walking surfaces, ramps, or stairs.</li>
+  <li>Freezing rain is actively falling or forecast within the next two hours.</li>
+  <li>A slip or near-miss incident is reported on the premises.</li>
+</ul>
+
+<h3>4.2 &nbsp; Priority Areas</h3>
+<p>Removal shall be performed in the following order of priority:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="width: 12%;">Priority</th>
+      <th>Area</th>
+      <th style="width: 38%;">Rationale</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><span class="priority-label">1 &mdash; Critical</span></td>
+      <td>Main entrance and ADA-accessible routes</td>
+      <td>Highest foot traffic; accessibility compliance</td>
+    </tr>
+    <tr>
+      <td><span class="priority-label">2 &mdash; High</span></td>
+      <td>Secondary exits and emergency egress paths</td>
+      <td>Fire code and life-safety requirements</td>
+    </tr>
+    <tr>
+      <td><span class="priority-label">3 &mdash; High</span></td>
+      <td>Customer walkways and sidewalks</td>
+      <td>Public-facing liability exposure</td>
+    </tr>
+    <tr>
+      <td><span class="priority-label">4 &mdash; Medium</span></td>
+      <td>Loading docks and delivery areas</td>
+      <td>Vendor and employee safety</td>
+    </tr>
+    <tr>
+      <td><span class="priority-label">5 &mdash; Medium</span></td>
+      <td>Parking lot and driving lanes</td>
+      <td>Vehicle and pedestrian safety</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3>4.3 &nbsp; Removal Steps</h3>
+<ol>
+  <li>Begin with the main entrance. Clear snow from the door threshold outward to a width of at least 48 inches.</li>
+  <li>Shovel all walkways to full width. Push snow to the side away from the walking path; do not allow snow piles to obstruct sight lines or drainage.</li>
+  <li>Apply de-icing material evenly to all cleared surfaces per the guidelines in Section&nbsp;5.</li>
+  <li>Check for ice underneath snow cover. Scrape ice with an ice scraper and apply de-icer directly.</li>
+  <li>Place "Caution &mdash; Wet/Slippery" signs at entrances and any areas where residual moisture is present.</li>
+  <li>Re-inspect and re-treat all priority areas at least every <strong>2 hours</strong> during active precipitation.</li>
+  <li>After precipitation ends, perform a final clearing pass and document completion in the Activity Log.</li>
+</ol>
+
+<h3>4.4 &nbsp; Parking Lot</h3>
+<p>
+  If a third-party contractor is responsible for parking lot plowing and treatment, refer to the
+  current contractor agreement for service triggers, response times, and scope. Management shall
+  verify contractor performance after each event.
+</p>
+<p>
+  If parking lot maintenance is handled by staff, follow the same removal steps above. Use a
+  push-style snow shovel or mechanical snow blower for large areas. Apply de-icer to pedestrian
+  crossings, handicapped spaces, and high-traffic lanes first.
+</p>
+
+<!-- ============================================================
+     SECTION 5 — DE-ICING MATERIALS AND APPLICATION
+     ============================================================ -->
+<h2><span class="section-number">Section 5</span> &mdash; De-Icing Materials and Application</h2>
+
+<h3>5.1 &nbsp; Approved Materials</h3>
+<table>
+  <thead>
+    <tr>
+      <th>Material</th>
+      <th>Effective Temperature</th>
+      <th>Notes</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Rock salt (sodium chloride)</td>
+      <td>Down to 15&deg;F (&minus;9&deg;C)</td>
+      <td>Most common; cost-effective. Less effective in extreme cold.</td>
+    </tr>
+    <tr>
+      <td>Calcium chloride</td>
+      <td>Down to &minus;25&deg;F (&minus;32&deg;C)</td>
+      <td>Effective in very cold conditions. Generates heat on contact.</td>
+    </tr>
+    <tr>
+      <td>Magnesium chloride</td>
+      <td>Down to 0&deg;F (&minus;18&deg;C)</td>
+      <td>Less corrosive than calcium chloride. Safer near vegetation.</td>
+    </tr>
+    <tr>
+      <td>Sand / grit</td>
+      <td>All temperatures</td>
+      <td>Provides traction only; does not melt ice. Use on slopes and ramps.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3>5.2 &nbsp; Application Guidelines</h3>
+<ul>
+  <li>Spread de-icing material evenly across the surface. A thin, uniform layer is more effective than heavy clumps.</li>
+  <li>Focus application on slopes, ramps, transitions between surfaces, and areas that tend to accumulate ice (shaded spots, downspouts, roof drip lines).</li>
+  <li>Avoid excessive application near landscaping and vegetation, as chloride-based products can damage plants and soil.</li>
+  <li>Apply material <em>after</em> shoveling, not before, for maximum effectiveness. Pre-treatment (anti-icing) may be applied before a forecast event at management's discretion.</li>
+  <li>Wear gloves when handling all de-icing chemicals.</li>
+</ul>
+
+<h3>5.3 &nbsp; Storage</h3>
+<ul>
+  <li>Store all de-icing materials in a dry, covered, and easily accessible location.</li>
+  <li>Keep containers sealed to prevent moisture absorption and clumping.</li>
+  <li>Verify inventory levels monthly from October through March; reorder when supply falls below 50 lbs.</li>
+</ul>
+
+<!-- ============================================================
+     SECTION 6 — EQUIPMENT AND SUPPLIES CHECKLIST
+     ============================================================ -->
+<div class="page-break"></div>
+<h2><span class="section-number">Section 6</span> &mdash; Equipment and Supplies Checklist</h2>
+
+<p>The following items shall be on hand and in serviceable condition before the start of each winter season. Conduct an inventory by <strong>October 1</strong> each year.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="width: 8%;">&#10003;</th>
+      <th>Item</th>
+      <th style="width: 18%;">Min. Quantity</th>
+      <th style="width: 30%;">Notes</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align:center;">&#9744;</td>
+      <td>Snow shovel &mdash; flat blade</td>
+      <td>2</td>
+      <td>For scraping and clearing hard surfaces</td>
+    </tr>
+    <tr>
+      <td style="text-align:center;">&#9744;</td>
+      <td>Snow shovel &mdash; scoop / ergonomic</td>
+      <td>2</td>
+      <td>For lifting and moving snow</td>
+    </tr>
+    <tr>
+      <td style="text-align:center;">&#9744;</td>
+      <td>Push broom (stiff bristle)</td>
+      <td>1</td>
+      <td>For clearing light snow and slush</td>
+    </tr>
+    <tr>
+      <td style="text-align:center;">&#9744;</td>
+      <td>Ice scraper / chopper</td>
+      <td>1</td>
+      <td>For breaking up compacted ice</td>
+    </tr>
+    <tr>
+      <td style="text-align:center;">&#9744;</td>
+      <td>De-icing material (rock salt or alternative)</td>
+      <td>50 lbs</td>
+      <td>Reorder when below this amount</td>
+    </tr>
+    <tr>
+      <td style="text-align:center;">&#9744;</td>
+      <td>Sand or grit</td>
+      <td>25 lbs</td>
+      <td>For traction on slopes and ramps</td>
+    </tr>
+    <tr>
+      <td style="text-align:center;">&#9744;</td>
+      <td>Caution / wet floor signs</td>
+      <td>3</td>
+      <td>Place at all cleared entrances</td>
+    </tr>
+    <tr>
+      <td style="text-align:center;">&#9744;</td>
+      <td>Insulated waterproof gloves</td>
+      <td>2 pairs</td>
+      <td>For handling chemicals and equipment</td>
+    </tr>
+    <tr>
+      <td style="text-align:center;">&#9744;</td>
+      <td>Winter boots (slip-resistant)</td>
+      <td>1 pair per designated employee</td>
+      <td>Steel-toe recommended for loading areas</td>
+    </tr>
+    <tr>
+      <td style="text-align:center;">&#9744;</td>
+      <td>High-visibility safety vest</td>
+      <td>1 per designated employee</td>
+      <td>Required when working in parking areas</td>
+    </tr>
+    <tr>
+      <td style="text-align:center;">&#9744;</td>
+      <td>Spreader (handheld or push)</td>
+      <td>1</td>
+      <td>For even distribution of de-icer</td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- ============================================================
+     SECTION 7 — DOCUMENTATION REQUIREMENTS
+     ============================================================ -->
+<h2><span class="section-number">Section 7</span> &mdash; Documentation Requirements</h2>
+
+<p>
+  Thorough documentation is essential for demonstrating due diligence and may be critical in
+  defending against liability claims. A Snow and Ice Activity Log entry must be completed for
+  <strong>every</strong> removal action, without exception.
+</p>
+
+<h3>7.1 &nbsp; Required Log Information</h3>
+<p>Each log entry shall include all of the following:</p>
+<ul>
+  <li><strong>Date</strong> of action</li>
+  <li><strong>Time</strong> of action (start and end)</li>
+  <li><strong>Weather conditions</strong> at the time (temperature, precipitation type and intensity, wind)</li>
+  <li><strong>Actions taken</strong> (shoveling, scraping, de-icer application, sign placement, etc.)</li>
+  <li><strong>Areas addressed</strong> (list specific locations from the priority table)</li>
+  <li><strong>Materials used</strong> and approximate quantity</li>
+  <li><strong>Employee name</strong> of the person performing the work</li>
+</ul>
+
+<h3>7.2 &nbsp; Retention</h3>
+<ul>
+  <li>All Snow and Ice Activity Logs shall be retained for a minimum of <strong>3 years</strong> from the date of entry.</li>
+  <li>Logs should be stored in a secure, organized manner (physical binder or digital system).</li>
+  <li>Management shall review log completeness on a monthly basis during the winter season.</li>
+</ul>
+
+<h3>7.3 &nbsp; Photographic Documentation</h3>
+<ul>
+  <li>When practical, take date- and time-stamped photographs of cleared areas after each removal action.</li>
+  <li>Photograph any conditions that could not be fully remediated (e.g., persistent ice on an uneven surface).</li>
+  <li>Store photographs with the corresponding log entry.</li>
+</ul>
+
+<div class="note">
+  <strong>Note:</strong> SafeWalk provides a digital logging system that automatically records date, time,
+  weather conditions, and photographs. Using the SafeWalk platform satisfies all documentation
+  requirements outlined in this section.
+</div>
+
+<!-- ============================================================
+     SECTION 8 — EMERGENCY PROCEDURES
+     ============================================================ -->
+<h2><span class="section-number">Section 8</span> &mdash; Emergency Procedures</h2>
+
+<h3>8.1 &nbsp; If Someone Falls or Is Injured</h3>
+<ol>
+  <li><strong>Do not move the person</strong> unless they are in immediate danger (e.g., in a traffic lane).</li>
+  <li><strong>Call 911</strong> immediately if the person is seriously injured, unconscious, or unable to stand.</li>
+  <li><strong>Secure the area</strong> around the injured person. Place caution signs or cones to redirect foot traffic.</li>
+  <li><strong>Document conditions</strong> at the scene: take photographs of the exact fall location, note weather conditions, and identify any ice or snow accumulation present.</li>
+  <li><strong>Notify management</strong> immediately, regardless of the severity of the incident.</li>
+  <li>Provide first aid only if trained and certified to do so.</li>
+</ol>
+
+<h3>8.2 &nbsp; Incident Reporting</h3>
+<ul>
+  <li>Complete a written Incident Report within 24 hours of any slip, fall, or injury on the premises related to snow or ice.</li>
+  <li>Include: date, time, location, conditions, witness information, actions taken, and injury description.</li>
+  <li>Preserve all Snow and Ice Activity Log entries for the 48 hours preceding the incident.</li>
+  <li>Preserve all photographic documentation from the day of the incident.</li>
+  <li>Do <strong>not</strong> discard, alter, or overwrite any records related to the incident.</li>
+  <li>Notify your insurance carrier as required by your policy terms.</li>
+</ul>
+
+<!-- ============================================================
+     SECTION 9 — ANNUAL REVIEW
+     ============================================================ -->
+<h2><span class="section-number">Section 9</span> &mdash; Annual Review</h2>
+
+<p>This policy shall be reviewed and updated before each winter season. The annual review should be completed no later than <strong>October 1</strong> of each year and shall include:</p>
+
+<ol>
+  <li><strong>Policy review.</strong> Read through the entire policy and update any procedures that have changed or proved inadequate during the prior season.</li>
+  <li><strong>Contact information.</strong> Verify and update all emergency contacts, designated employee assignments, and contractor details.</li>
+  <li><strong>Equipment inventory.</strong> Conduct the equipment and supplies checklist (Section&nbsp;6) and order any items that are missing, damaged, or below minimum quantities.</li>
+  <li><strong>Contractor agreements.</strong> Review and renew any third-party snow removal contracts. Confirm insurance certificates are current.</li>
+  <li><strong>Employee training.</strong> Conduct a brief training session or meeting to review procedures with all employees. Distribute updated copies of this policy.</li>
+  <li><strong>Lessons learned.</strong> Review any incidents from the prior season and incorporate corrective actions into updated procedures.</li>
+</ol>
+
+<p>
+  Retain prior versions of this policy for reference. Document the date of each review and the name
+  of the person who conducted it.
+</p>
+
+<!-- ============================================================
+     ACKNOWLEDGMENT
+     ============================================================ -->
+<div class="acknowledgment">
+  <h2 style="border-bottom: none; margin-top: 0;">Employee Acknowledgment</h2>
+
+  <p>
+    I have read and understand the <strong>Snow and Ice Management Policy and Procedures</strong>
+    for <strong>{{ business_name }}</strong>. I agree to comply with the procedures outlined in this
+    document and understand my responsibilities regarding snow and ice removal, monitoring, and
+    documentation. I acknowledge that failure to follow these procedures may result in disciplinary
+    action and may increase the risk of injury to myself and others.
+  </p>
+
+  <div class="sig-block">
+    <table style="border: none; width: 100%;">
+      <tr>
+        <td style="border: none; padding: 0 10pt 0 0; width: 65%;">
+          <div style="border-bottom: 1px solid #333; height: 28pt;">&nbsp;</div>
+          <div class="sig-label">Employee Signature</div>
+        </td>
+        <td style="border: none; padding: 0; width: 35%;">
+          <div style="border-bottom: 1px solid #333; height: 28pt;">&nbsp;</div>
+          <div class="sig-label">Date</div>
+        </td>
+      </tr>
+    </table>
+
+    <table style="border: none; width: 100%; margin-top: 20pt;">
+      <tr>
+        <td style="border: none; padding: 0 10pt 0 0; width: 65%;">
+          <div style="border-bottom: 1px solid #333; height: 28pt;">&nbsp;</div>
+          <div class="sig-label">Printed Name</div>
+        </td>
+        <td style="border: none; padding: 0; width: 35%;">
+          <div style="border-bottom: 1px solid #333; height: 28pt;">&nbsp;</div>
+          <div class="sig-label">Position / Title</div>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+
+</body>
+</html>
