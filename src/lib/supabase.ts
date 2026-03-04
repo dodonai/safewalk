@@ -1,7 +1,14 @@
-import { createClient } from '@supabase/supabase-js';
+import { createClient, type SupabaseClient } from '@supabase/supabase-js';
 import { env } from '$env/dynamic/public';
 
-export const supabase = createClient(
-	env.PUBLIC_SUPABASE_URL || '',
-	env.PUBLIC_SUPABASE_ANON_KEY || ''
-);
+let _client: SupabaseClient | null = null;
+
+export function getSupabase(): SupabaseClient {
+	if (!_client) {
+		_client = createClient(
+			env.PUBLIC_SUPABASE_URL || '',
+			env.PUBLIC_SUPABASE_ANON_KEY || ''
+		);
+	}
+	return _client;
+}

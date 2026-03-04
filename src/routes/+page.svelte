@@ -21,7 +21,7 @@
 				href="/pricing"
 				class="inline-flex items-center bg-accent hover:bg-accent-light text-brand-dark font-bold text-lg px-8 py-4 rounded-lg transition-colors shadow-lg"
 			>
-				Get Protected &mdash; $399
+				Get Protected &mdash; $199
 			</a>
 			<a
 				href="#how-it-works"
@@ -98,7 +98,7 @@
 	<div class="max-w-6xl mx-auto px-4">
 		<div class="text-center max-w-3xl mx-auto">
 			<h2 class="text-3xl md:text-4xl font-extrabold text-brand-dark">
-				Everything You Need for $399
+				Everything You Need Starting at $199
 			</h2>
 			<p class="mt-4 text-gray-600 text-lg">
 				A complete compliance package customized for your business, delivered digitally and ready to implement.
@@ -155,7 +155,7 @@
 					</svg>
 				</div>
 				<h3 class="text-lg font-bold text-brand-dark mb-2">Contractor Agreement</h3>
-				<p class="text-sm text-accent font-bold mb-3">Available at $499 (full bundle)</p>
+				<p class="text-sm text-accent font-bold mb-3">Included in Complete ($349) and Premium ($499/yr)</p>
 				<p class="text-gray-600 text-sm leading-relaxed">
 					If you hire a snow removal company, this agreement defines responsibilities, insurance requirements, and indemnification. Protects you when the work is outsourced.
 				</p>

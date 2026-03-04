@@ -5,7 +5,7 @@
 
 <script lang="ts">
 	import { page } from '$app/stores';
-	import { supabase } from '$lib/supabase';
+	import { getSupabase } from '$lib/supabase';
 
 	let email = $state($page.url.searchParams.get('email') || '');
 	let emailInput = $state('');
@@ -28,7 +28,7 @@
 		loading = true;
 		errorMsg = '';
 
-		const { data: cust, error: custErr } = await supabase
+		const { data: cust, error: custErr } = await getSupabase()
 			.from('customers')
 			.select('*')
 			.eq('email', lookupEmail)
@@ -42,7 +42,7 @@
 
 		customer = cust;
 
-		const { data: purch } = await supabase
+		const { data: purch } = await getSupabase()
 			.from('purchases')
 			.select('*')
 			.eq('customer_id', cust.id)
@@ -53,7 +53,7 @@
 
 		if (purchases.length > 0) {
 			const purchaseIds = purchases.map((p: any) => p.id);
-			const { data: dl } = await supabase
+			const { data: dl } = await getSupabase()
 				.from('downloads')
 				.select('*')
 				.in('purchase_id', purchaseIds);

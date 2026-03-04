@@ -12,21 +12,27 @@ export const POST: RequestHandler = async ({ request }) => {
 		throw error(400, 'Missing required fields');
 	}
 
-	const priceId =
-		body.tier === 'contract' ? env.STRIPE_PRICE_CONTRACT : env.STRIPE_PRICE_BASIC;
+	const priceMap: Record<string, string | undefined> = {
+		basic: env.STRIPE_PRICE_BASIC,
+		contract: env.STRIPE_PRICE_CONTRACT,
+		premium: env.STRIPE_PRICE_PREMIUM
+	};
+	const priceId = priceMap[body.tier] || env.STRIPE_PRICE_BASIC;
 
 	const lineItems: Array<{ price: string; quantity: number }> = [
 		{ price: priceId || '', quantity: 1 }
 	];
 
-	if (body.annual_updates) {
+	const isSubscription = body.tier === 'premium' || body.annual_updates;
+
+	if (body.annual_updates && body.tier !== 'premium') {
 		lineItems.push({ price: env.STRIPE_PRICE_ANNUAL || '', quantity: 1 });
 	}
 
 	const siteUrl = pubEnv.PUBLIC_SITE_URL || 'http://localhost:5173';
 
 	const session = await getStripe().checkout.sessions.create({
-		mode: body.annual_updates ? 'subscription' : 'payment',
+		mode: isSubscription ? 'subscription' : 'payment',
 		line_items: lineItems,
 		customer_email: body.email,
 		success_url: `${siteUrl}/success?session_id={CHECKOUT_SESSION_ID}`,

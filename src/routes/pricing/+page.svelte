@@ -2,24 +2,24 @@
 	<title>Pricing — SafeWalk | Snow & Ice Management Documents</title>
 	<meta
 		name="description"
-		content="Get professional snow and ice removal policy documents starting at $399. One-time purchase, no hidden fees, no hourly legal bills. Delivered digitally within 24 hours."
+		content="Get professional snow and ice removal policy documents starting at $199. One-time purchase, no hidden fees, no hourly legal bills. Delivered digitally within 24 hours."
 	/>
 	<meta property="og:title" content="SafeWalk Pricing — Professional Snow & Ice Management Documents" />
 	<meta
 		property="og:description"
-		content="One-time purchase starting at $399. Policy documents, employee posters, activity logs, and contractor agreements."
+		content="One-time purchase starting at $199. Policy documents, employee posters, activity logs, and contractor agreements."
 	/>
 	<meta property="og:type" content="website" />
 	<meta name="twitter:card" content="summary" />
 	<meta name="twitter:title" content="SafeWalk Pricing — Snow & Ice Management Documents" />
 	<meta
 		name="twitter:description"
-		content="Professional snow and ice removal documents starting at $399. No hidden fees."
+		content="Professional snow and ice removal documents starting at $199. No hidden fees."
 	/>
 </svelte:head>
 
 <script lang="ts">
-	type Tier = 'basic' | 'complete';
+	type Tier = 'basic' | 'contract' | 'premium';
 
 	interface FormData {
 		tier: Tier;
@@ -35,8 +35,15 @@
 	}
 
 	const PRICES: Record<Tier, number> = {
-		basic: 399,
-		complete: 499
+		basic: 199,
+		contract: 349,
+		premium: 499
+	};
+
+	const TIER_LABELS: Record<Tier, string> = {
+		basic: 'Basic Package',
+		contract: 'Complete Package',
+		premium: 'Premium Package'
 	};
 
 	const MIDWEST_STATES = [
@@ -67,7 +74,7 @@
 		{
 			question: 'What if laws change?',
 			answer:
-				'Our Annual Updates subscription keeps your documents current. Each year before winter, we review and update your package to reflect the latest legal standards and best practices.'
+				'Our Annual Updates subscription ($99/year) keeps your documents current. Each year before winter, we review and update your package to reflect the latest legal standards and best practices. Premium subscribers get annual updates included automatically.'
 		},
 		{
 			question: 'Is this specific to my state?',
@@ -87,7 +94,7 @@
 	let openFaqIndex = $state<number | null>(null);
 
 	let form: FormData = $state({
-		tier: 'complete',
+		tier: 'contract',
 		businessName: '',
 		contactName: '',
 		email: '',
@@ -101,11 +108,23 @@
 
 	let formEl: HTMLElement | undefined = $state();
 
+	let isPremium = $derived(form.tier === 'premium');
+
+	let total = $derived.by(() => {
+		let t = PRICES[form.tier];
+		if (!isPremium && form.annualUpdates) {
+			t += 99;
+		}
+		return t;
+	});
+
 	function selectTier(tier: Tier) {
 		form.tier = tier;
+		if (tier === 'premium') {
+			form.annualUpdates = false;
+		}
 		showForm = true;
 		errorMessage = '';
-		// Scroll to form after DOM updates
 		setTimeout(() => {
 			formEl?.scrollIntoView({ behavior: 'smooth', block: 'start' });
 		}, 100);
@@ -113,14 +132,6 @@
 
 	function toggleFaq(index: number) {
 		openFaqIndex = openFaqIndex === index ? null : index;
-	}
-
-	function computeTotal(): number {
-		let total = PRICES[form.tier];
-		if (form.annualUpdates) {
-			total += 149;
-		}
-		return total;
 	}
 
 	async function handleSubmit(e: Event) {
@@ -134,15 +145,15 @@
 				headers: { 'Content-Type': 'application/json' },
 				body: JSON.stringify({
 					tier: form.tier,
-					businessName: form.businessName,
-					contactName: form.contactName,
+					business_name: form.businessName,
+					business_address: form.address,
+					business_city: form.city,
+					business_state: form.state,
+					business_zip: form.zip,
+					contact_name: form.contactName,
 					email: form.email,
 					phone: form.phone,
-					address: form.address,
-					city: form.city,
-					state: form.state,
-					zip: form.zip,
-					annualUpdates: form.annualUpdates
+					annual_updates: isPremium ? true : form.annualUpdates
 				})
 			});
 
@@ -173,15 +184,15 @@
 
 <!-- Pricing Cards -->
 <section class="bg-ice px-4 py-16">
-	<div class="mx-auto grid max-w-4xl gap-8 md:grid-cols-2">
+	<div class="mx-auto grid max-w-6xl gap-8 md:grid-cols-3">
 		<!-- Basic Package -->
 		<div
 			class="flex flex-col rounded-2xl border border-gray-200 bg-white p-8 shadow-sm transition-shadow hover:shadow-md"
 		>
 			<div class="mb-6">
-				<h2 class="text-brand mb-1 text-xl font-bold">Basic Package</h2>
+				<h2 class="text-brand mb-1 text-xl font-bold">Basic</h2>
 				<div class="mb-4 flex items-baseline gap-1">
-					<span class="text-brand text-4xl font-extrabold">$399</span>
+					<span class="text-brand text-4xl font-extrabold">$199</span>
 					<span class="text-sm text-gray-500">one-time</span>
 				</div>
 			</div>
@@ -197,13 +208,13 @@
 					<svg class="text-accent mt-0.5 h-5 w-5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
 						<path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
 					</svg>
-					Employee Quick-Reference Poster
+					Employee Quick-Reference Poster (print-ready)
 				</li>
 				<li class="flex items-start gap-2">
 					<svg class="text-accent mt-0.5 h-5 w-5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
 						<path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
 					</svg>
-					Activity Log Form
+					Activity Log Form (fillable template)
 				</li>
 				<li class="flex items-start gap-2">
 					<svg class="text-accent mt-0.5 h-5 w-5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -227,21 +238,21 @@
 			</button>
 		</div>
 
-		<!-- Complete Package (Recommended) -->
+		<!-- Complete Package (Most Popular) -->
 		<div
 			class="border-accent relative flex flex-col rounded-2xl border-2 bg-white p-8 shadow-lg transition-shadow hover:shadow-xl"
 		>
-			<!-- Best Value Badge -->
+			<!-- Most Popular Badge -->
 			<div
 				class="bg-accent absolute -top-4 left-1/2 -translate-x-1/2 rounded-full px-4 py-1 text-sm font-bold text-white shadow"
 			>
-				Best Value
+				Most Popular
 			</div>
 
 			<div class="mb-6">
-				<h2 class="text-brand mb-1 text-xl font-bold">Basic + Contract</h2>
+				<h2 class="text-brand mb-1 text-xl font-bold">Complete</h2>
 				<div class="mb-4 flex items-baseline gap-1">
-					<span class="text-brand text-4xl font-extrabold">$499</span>
+					<span class="text-brand text-4xl font-extrabold">$349</span>
 					<span class="text-sm text-gray-500">one-time</span>
 				</div>
 			</div>
@@ -257,24 +268,6 @@
 					<svg class="text-accent mt-0.5 h-5 w-5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
 						<path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
 					</svg>
-					Snow & Ice Removal Policy & Procedures (3-5 pages)
-				</li>
-				<li class="flex items-start gap-2">
-					<svg class="text-accent mt-0.5 h-5 w-5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-						<path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
-					</svg>
-					Employee Quick-Reference Poster
-				</li>
-				<li class="flex items-start gap-2">
-					<svg class="text-accent mt-0.5 h-5 w-5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-						<path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
-					</svg>
-					Activity Log Form
-				</li>
-				<li class="flex items-start gap-2">
-					<svg class="text-accent mt-0.5 h-5 w-5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-						<path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
-					</svg>
 					Contractor Agreement Template
 				</li>
 				<li class="flex items-start gap-2">
@@ -283,25 +276,73 @@
 					</svg>
 					Customizable for your state and contractor
 				</li>
+			</ul>
+
+			<button
+				onclick={() => selectTier('contract')}
+				class="bg-accent hover:bg-accent-light w-full cursor-pointer rounded-lg px-6 py-3 font-semibold text-white shadow transition-colors"
+			>
+				Get Complete Package
+			</button>
+		</div>
+
+		<!-- Premium Package -->
+		<div
+			class="bg-brand-dark relative flex flex-col rounded-2xl border-2 border-brand-light p-8 shadow-lg transition-shadow hover:shadow-xl"
+		>
+			<!-- Strongest Defense Badge -->
+			<div
+				class="absolute -top-4 left-1/2 -translate-x-1/2 rounded-full bg-gradient-to-r from-accent to-accent-light px-4 py-1 text-sm font-bold text-white shadow"
+			>
+				Strongest Defense
+			</div>
+
+			<div class="mb-6">
+				<h2 class="mb-1 text-xl font-bold text-white">Premium</h2>
+				<div class="mb-4 flex items-baseline gap-1">
+					<span class="text-4xl font-extrabold text-white">$499</span>
+					<span class="text-sm text-ice-dark">/year</span>
+				</div>
+			</div>
+
+			<ul class="mb-8 flex-1 space-y-3 text-sm text-ice">
 				<li class="flex items-start gap-2">
-					<svg class="text-accent mt-0.5 h-5 w-5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+					<svg class="text-accent-light mt-0.5 h-5 w-5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
 						<path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
 					</svg>
-					Customized with your business information
+					<span><strong class="text-white">Everything in Complete</strong>, plus:</span>
 				</li>
 				<li class="flex items-start gap-2">
-					<svg class="text-accent mt-0.5 h-5 w-5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+					<svg class="text-accent-light mt-0.5 h-5 w-5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
 						<path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
 					</svg>
-					Delivered digitally within 24 hours
+					Digital Activity Logging App (mobile-friendly)
+				</li>
+				<li class="flex items-start gap-2">
+					<svg class="text-accent-light mt-0.5 h-5 w-5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+						<path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+					</svg>
+					Photo evidence capture with timestamps
+				</li>
+				<li class="flex items-start gap-2">
+					<svg class="text-accent-light mt-0.5 h-5 w-5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+						<path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+					</svg>
+					Compliance dashboard for owners
+				</li>
+				<li class="flex items-start gap-2">
+					<svg class="text-accent-light mt-0.5 h-5 w-5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+						<path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+					</svg>
+					Automatic annual document updates
 				</li>
 			</ul>
 
 			<button
-				onclick={() => selectTier('complete')}
+				onclick={() => selectTier('premium')}
 				class="bg-accent hover:bg-accent-light w-full cursor-pointer rounded-lg px-6 py-3 font-semibold text-white shadow transition-colors"
 			>
-				Get Complete Package
+				Get Premium
 			</button>
 		</div>
 	</div>
@@ -314,11 +355,11 @@
 			<svg class="text-accent h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
 				<path stroke-linecap="round" stroke-linejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
 			</svg>
-			<h2 class="text-brand text-xl font-bold">Add Annual Updates &mdash; $149/year</h2>
+			<h2 class="text-brand text-xl font-bold">Add Annual Updates &mdash; $99/year</h2>
 		</div>
 		<p class="text-gray-600">
 			Your documents stay current with the latest legal standards. We review and update your
-			package every year before winter.
+			package every year before winter. <span class="font-medium">Included free with Premium.</span>
 		</p>
 	</div>
 </section>
@@ -330,10 +371,10 @@
 			<div class="mb-8 text-center">
 				<h2 class="text-brand mb-2 text-2xl font-bold">Complete Your Order</h2>
 				<p class="text-gray-600">
-					{form.tier === 'basic' ? 'Basic Package' : 'Basic + Contract Package'} &mdash;
-					<span class="font-semibold">${PRICES[form.tier]}</span>
-					{#if form.annualUpdates}
-						<span class="text-sm"> + $149/yr Annual Updates</span>
+					{TIER_LABELS[form.tier]} &mdash;
+					<span class="font-semibold">${PRICES[form.tier]}{isPremium ? '/year' : ''}</span>
+					{#if !isPremium && form.annualUpdates}
+						<span class="text-sm"> + $99/yr Annual Updates</span>
 					{/if}
 				</p>
 			</div>
@@ -466,39 +507,55 @@
 					</div>
 				</div>
 
-				<!-- Annual Updates Checkbox -->
-				<div class="bg-ice/50 rounded-lg border border-gray-200 p-4">
-					<label class="flex cursor-pointer items-start gap-3">
-						<input
-							type="checkbox"
-							bind:checked={form.annualUpdates}
-							class="text-accent focus:ring-accent mt-1 h-4 w-4 rounded border-gray-300"
-						/>
-						<div>
-							<span class="font-medium text-gray-900">Add Annual Updates &mdash; $149/year</span>
-							<p class="mt-0.5 text-sm text-gray-500">
-								We review and update your documents every year before winter to keep them current
-								with the latest legal standards.
-							</p>
+				<!-- Annual Updates Checkbox (hidden for premium) -->
+				{#if !isPremium}
+					<div class="bg-ice/50 rounded-lg border border-gray-200 p-4">
+						<label class="flex cursor-pointer items-start gap-3">
+							<input
+								type="checkbox"
+								bind:checked={form.annualUpdates}
+								class="text-accent focus:ring-accent mt-1 h-4 w-4 rounded border-gray-300"
+							/>
+							<div>
+								<span class="font-medium text-gray-900">Add Annual Updates &mdash; $99/year</span>
+								<p class="mt-0.5 text-sm text-gray-500">
+									We review and update your documents every year before winter to keep them current
+									with the latest legal standards.
+								</p>
+							</div>
+						</label>
+					</div>
+				{:else}
+					<div class="bg-ice/50 rounded-lg border border-green-200 p-4">
+						<div class="flex items-start gap-3">
+							<svg class="mt-0.5 h-5 w-5 shrink-0 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+								<path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+							</svg>
+							<div>
+								<span class="font-medium text-gray-900">Annual Updates Included</span>
+								<p class="mt-0.5 text-sm text-gray-500">
+									Your Premium subscription includes automatic annual document updates at no extra cost.
+								</p>
+							</div>
 						</div>
-					</label>
-				</div>
+					</div>
+				{/if}
 
 				<!-- Order Summary -->
 				<div class="bg-ice rounded-lg p-4">
 					<div class="flex items-center justify-between text-sm text-gray-700">
-						<span>{form.tier === 'basic' ? 'Basic Package' : 'Basic + Contract Package'}</span>
-						<span>${PRICES[form.tier]}</span>
+						<span>{TIER_LABELS[form.tier]}</span>
+						<span>${PRICES[form.tier]}{isPremium ? '/year' : ''}</span>
 					</div>
-					{#if form.annualUpdates}
+					{#if !isPremium && form.annualUpdates}
 						<div class="mt-1 flex items-center justify-between text-sm text-gray-700">
 							<span>Annual Updates (first year)</span>
-							<span>$149</span>
+							<span>$99</span>
 						</div>
 					{/if}
 					<div class="text-brand mt-3 flex items-center justify-between border-t border-gray-200 pt-3 font-bold">
 						<span>Total due today</span>
-						<span>${computeTotal()}</span>
+						<span>${total}{isPremium ? '/year' : ''}</span>
 					</div>
 				</div>
 
@@ -572,7 +629,7 @@
 			legally compliant.
 		</p>
 		<button
-			onclick={() => selectTier('complete')}
+			onclick={() => selectTier('contract')}
 			class="bg-accent hover:bg-accent-light inline-block cursor-pointer rounded-lg px-8 py-3 font-semibold text-white shadow transition-colors"
 		>
 			Get Started Today

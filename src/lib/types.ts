@@ -16,7 +16,7 @@ export interface Purchase {
 	customer_id: string;
 	stripe_session_id: string;
 	stripe_customer_id: string;
-	tier: 'basic' | 'contract' | 'annual';
+	tier: 'basic' | 'contract' | 'premium';
 	amount_cents: number;
 	status: 'pending' | 'completed' | 'failed';
 	documents_generated: boolean;
@@ -33,7 +33,7 @@ export interface Download {
 	expires_at: string;
 }
 
-export type Tier = 'basic' | 'contract';
+export type Tier = 'basic' | 'contract' | 'premium';
 
 export interface CheckoutRequest {
 	tier: Tier;
@@ -51,16 +51,23 @@ export interface CheckoutRequest {
 export const TIERS = {
 	basic: {
 		name: 'Basic Package',
-		price: 399,
+		price: 199,
 		documents: ['policy', 'poster', 'log_form'],
 		description: 'Snow & Ice Policy, Employee Poster, and Activity Log Form'
 	},
 	contract: {
-		name: 'Basic + Contract',
-		price: 499,
+		name: 'Complete Package',
+		price: 349,
 		documents: ['policy', 'poster', 'log_form', 'contract'],
 		description: 'Everything in Basic, plus a Contractor Agreement Template'
+	},
+	premium: {
+		name: 'Premium',
+		price: 499,
+		recurring: 'year',
+		documents: ['policy', 'poster', 'log_form', 'contract'],
+		description: 'All documents + digital logging app with photo evidence'
 	}
 } as const;
 
-export const ANNUAL_UPDATE_PRICE = 149;
+export const ANNUAL_UPDATE_PRICE = 99;
