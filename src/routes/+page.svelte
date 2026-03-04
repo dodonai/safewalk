@@ -1,3 +1,7 @@
+<script>
+	import { base } from '$app/paths';
+</script>
+
 <svelte:head>
 	<title>SafeWalk - Snow & Ice Compliance Documents for Small Businesses</title>
 	<meta
@@ -18,7 +22,7 @@
 		</p>
 		<div class="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
 			<a
-				href="/pricing"
+				href="{base}/pricing"
 				class="inline-flex items-center bg-accent hover:bg-accent-light text-brand-dark font-bold text-lg px-8 py-4 rounded-lg transition-colors shadow-lg"
 			>
 				Get Protected &mdash; $199
@@ -248,7 +252,7 @@
 		</p>
 		<div class="mt-10">
 			<a
-				href="/pricing"
+				href="{base}/pricing"
 				class="inline-flex items-center bg-accent hover:bg-accent-light text-brand-dark font-bold text-lg px-10 py-4 rounded-lg transition-colors shadow-lg"
 			>
 				Get Protected Now

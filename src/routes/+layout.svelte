@@ -1,5 +1,6 @@
 <script lang="ts">
 	import '../app.css';
+	import { base } from '$app/paths';
 	let { children } = $props();
 </script>
 
@@ -12,7 +13,7 @@
 <div class="min-h-screen flex flex-col bg-white text-gray-900 font-sans">
 	<header class="bg-brand text-white">
 		<nav class="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
-			<a href="/" class="flex items-center gap-2 text-xl font-bold tracking-tight">
+			<a href="{base}/" class="flex items-center gap-2 text-xl font-bold tracking-tight">
 				<svg class="w-8 h-8" viewBox="0 0 32 32" fill="none">
 					<circle cx="16" cy="16" r="14" stroke="currentColor" stroke-width="2" />
 					<path d="M10 20 L16 10 L22 20" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
@@ -21,10 +22,10 @@
 				SafeWalk
 			</a>
 			<div class="hidden md:flex items-center gap-8 text-sm font-medium">
-				<a href="/how-it-works" class="hover:text-accent-light transition-colors">How It Works</a>
-				<a href="/pricing" class="hover:text-accent-light transition-colors">Pricing</a>
-				<a href="/about" class="hover:text-accent-light transition-colors">About</a>
-				<a href="/pricing" class="bg-accent hover:bg-accent-light text-brand-dark font-semibold px-4 py-2 rounded-lg transition-colors">
+				<a href="{base}/how-it-works" class="hover:text-accent-light transition-colors">How It Works</a>
+				<a href="{base}/pricing" class="hover:text-accent-light transition-colors">Pricing</a>
+				<a href="{base}/about" class="hover:text-accent-light transition-colors">About</a>
+				<a href="{base}/pricing" class="bg-accent hover:bg-accent-light text-brand-dark font-semibold px-4 py-2 rounded-lg transition-colors">
 					Get Protected
 				</a>
 			</div>
@@ -47,10 +48,10 @@
 			<div>
 				<h4 class="text-white font-semibold mb-3">Quick Links</h4>
 				<ul class="space-y-2 text-sm">
-					<li><a href="/how-it-works" class="hover:text-white transition-colors">How It Works</a></li>
-					<li><a href="/pricing" class="hover:text-white transition-colors">Pricing</a></li>
-					<li><a href="/about" class="hover:text-white transition-colors">About</a></li>
-					<li><a href="/dashboard" class="hover:text-white transition-colors">My Documents</a></li>
+					<li><a href="{base}/how-it-works" class="hover:text-white transition-colors">How It Works</a></li>
+					<li><a href="{base}/pricing" class="hover:text-white transition-colors">Pricing</a></li>
+					<li><a href="{base}/about" class="hover:text-white transition-colors">About</a></li>
+					<li><a href="{base}/dashboard" class="hover:text-white transition-colors">My Documents</a></li>
 				</ul>
 			</div>
 			<div>

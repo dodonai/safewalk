@@ -1,3 +1,7 @@
+<script>
+	import { base } from '$app/paths';
+</script>
+
 <svelte:head>
 	<title>About SafeWalk | Snow & Ice Compliance for Small Businesses</title>
 	<meta name="description" content="SafeWalk was created by legal and technology professionals to help small businesses protect themselves from slip-and-fall liability with professional compliance documents." />
@@ -130,7 +134,7 @@
 			Professional compliance documents starting at $399. Customized for your business and delivered within 24 hours.
 		</p>
 		<a
-			href="/pricing"
+			href="{base}/pricing"
 			class="inline-block bg-accent hover:bg-accent-light text-brand-dark font-bold text-lg px-8 py-4 rounded-xl transition-colors shadow-md hover:shadow-lg"
 		>
 			View Pricing & Get Started

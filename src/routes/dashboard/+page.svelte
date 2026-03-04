@@ -5,6 +5,7 @@
 
 <script lang="ts">
 	import { page } from '$app/stores';
+	import { base } from '$app/paths';
 	import { getSupabase } from '$lib/supabase';
 
 	let email = $state($page.url.searchParams.get('email') || '');
@@ -117,7 +118,7 @@
 		{#if purchases.length === 0}
 			<div class="bg-ice rounded-xl p-8 text-center">
 				<p class="text-gray-600">No completed purchases found.</p>
-				<a href="/pricing" class="text-brand font-semibold hover:underline mt-2 inline-block">
+				<a href="{base}/pricing" class="text-brand font-semibold hover:underline mt-2 inline-block">
 					View our packages
 				</a>
 			</div>

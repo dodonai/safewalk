@@ -4,6 +4,7 @@
 
 <script lang="ts">
 	import { page } from '$app/stores';
+	import { base } from '$app/paths';
 
 	const sessionId = $derived($page.url.searchParams.get('session_id'));
 </script>
@@ -25,13 +26,13 @@
 		</p>
 		<div class="flex flex-col sm:flex-row gap-4 justify-center">
 			<a
-				href="/dashboard"
+				href="{base}/dashboard"
 				class="bg-brand text-white px-6 py-3 rounded-lg font-semibold hover:bg-brand-light transition-colors"
 			>
 				Go to Dashboard
 			</a>
 			<a
-				href="/"
+				href="{base}/"
 				class="border border-brand text-brand px-6 py-3 rounded-lg font-semibold hover:bg-brand hover:text-white transition-colors"
 			>
 				Back to Home

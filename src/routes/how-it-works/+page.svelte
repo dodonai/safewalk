@@ -1,3 +1,7 @@
+<script>
+	import { base } from '$app/paths';
+</script>
+
 <svelte:head>
 	<title>How It Works | SafeWalk — Snow & Ice Compliance Documents</title>
 	<meta name="description" content="Learn how SafeWalk delivers professional snow and ice compliance documents to your business in 4 simple steps. Choose a package, share your details, and receive customized documents within 24 hours." />
@@ -342,7 +346,7 @@
 			Choose your package and have your customized compliance documents within 24 hours.
 		</p>
 		<a
-			href="/pricing"
+			href="{base}/pricing"
 			class="inline-block bg-accent hover:bg-accent-light text-brand-dark font-bold text-lg px-8 py-4 rounded-xl transition-colors shadow-md hover:shadow-lg"
 		>
 			View Pricing & Get Started

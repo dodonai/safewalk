@@ -19,6 +19,8 @@
 </svelte:head>
 
 <script lang="ts">
+	import { base } from '$app/paths';
+
 	type Tier = 'basic' | 'contract' | 'premium';
 
 	interface FormData {
@@ -140,7 +142,7 @@
 		errorMessage = '';
 
 		try {
-			const response = await fetch('/api/checkout', {
+			const response = await fetch(`${base}/api/checkout`, {
 				method: 'POST',
 				headers: { 'Content-Type': 'application/json' },
 				body: JSON.stringify({
